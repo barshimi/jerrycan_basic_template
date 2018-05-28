@@ -10,26 +10,25 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import configureStore from './store'
 import './globalStyle/_globals.scss'
-import jerrycan from 'jerrycan'
+import jerrycan from '../node_modules/jerrycanSync/lib'
 
-async function initialApp (env) {
-  const reduxElements = await jerrycan.init(env)
+function initialApp (env) {
+  const reduxElements = jerrycan.init(env)
   const browserHistory = useRouterHistory(createBrowserHistory)()
-  const store = await configureStore(reduxElements, browserHistory)
+  const store = configureStore(reduxElements, browserHistory)
   const history = syncHistoryWithStore(browserHistory, store, {
     selectLocationState: (state) => state.routing
   })
   if (env !== 'production') {
     if (module.hot) {
-      module.hot.accept(['jerrycan'], () => {
-        const {reducersCreator} = require('jerrycan')
+      module.hot.accept(['../node_modules/jerrycanSync/lib'], () => {
+        const {reducersCreator} = require('../node_modules/jerrycanSync/lib')
         reduxElements.reducerRegistry.register(reducersCreator())
       })
     }
   }
-
   const wraperStyle = {height: '100%'}
-  return ReactDOM.render(
+  ReactDOM.render(
     process.env.NODE_ENV !== 'production' && module.hot
       ? (<AppContainer>
         <Provider store={store}>
@@ -43,6 +42,7 @@ async function initialApp (env) {
           <Router history={history} routes={reduxElements.routes} />
         </div>
       </Provider>), document.getElementById('root'))
+  return reduxElements
 }
 
-initialApp(process.env.NODE_ENV || 'development')
+export default initialApp(process.env.NODE_ENV || 'development')

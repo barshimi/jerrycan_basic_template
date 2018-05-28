@@ -13,7 +13,7 @@ const thirdPartyReducers = {
  * @param  {class} reducerRegistry  [reducer registry class]
  * @param  {object} history         [html 5 history]
  */
-export default async function configureStore (reduxElements, history) {
+export default function configureStore (reduxElements, history) {
   const middleware = applyMiddleware(
     ...reduxElements.appMiddleware,
     ReduxThunk,
