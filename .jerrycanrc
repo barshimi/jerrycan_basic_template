@@ -1,0 +1,11 @@
+{
+  "globalState": "redux",
+  "view_stack": "react",
+  "loader": "git",
+  "moduleBuilder": true,
+  "modules": [
+    "https://github.com/barshimi/module_three.git",
+    "https://github.com/barshimi/module_two.git",
+    "https://github.com/barshimi/module_one.git"
+  ]
+}
