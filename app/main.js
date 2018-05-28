@@ -10,7 +10,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import configureStore from './store'
 import './globalStyle/_globals.scss'
-import jerrycan from '../node_modules/jerrycanSync/lib'
+import jerrycan from 'jerrycan'
 
 function initialApp (env) {
   const reduxElements = jerrycan.init(env)
@@ -21,8 +21,8 @@ function initialApp (env) {
   })
   if (env !== 'production') {
     if (module.hot) {
-      module.hot.accept(['../node_modules/jerrycanSync/lib'], () => {
-        const {reducersCreator} = require('../node_modules/jerrycanSync/lib')
+      module.hot.accept(['jerrycan'], () => {
+        const {reducersCreator} = require('jerrycan')
         reduxElements.reducerRegistry.register(reducersCreator())
       })
     }

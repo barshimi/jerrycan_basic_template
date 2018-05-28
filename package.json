@@ -8,7 +8,7 @@
   },
   "betterScripts": {
     "start": {
-      "command": "node ./node_modules/jerrycan/lib/coreBuilder.js && webpack-dev-server --config ./webpack.config.babel.js",
+      "command": "jerrycan && webpack-dev-server --config ./webpack.config.babel.js",
       "env": {
         "NODE_ENV": "development",
         "MODULES": "[\"module_one\", \"module_two\", \"module_three\"]",
@@ -26,6 +26,7 @@
     "better-npm-run": "^0.1.0",
     "cross-env": "^5.1.4",
     "history": "^3.3.0",
+    "jerrycan": "github:barshimi/jerrycan",
     "node-ensure": "0.0.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
