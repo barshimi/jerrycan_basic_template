@@ -159,14 +159,7 @@ webpackConfig.module.rules.push(
   {
     test: /\.(js|jsx)$/,
     exclude: [/node_modules/],
-    use: [{
-      loader: 'babel-loader',
-      options: {
-        cacheDirectory: true,
-        plugins: ['transform-runtime'],
-        presets: ['react', ['env', { 'modules': false }]]
-      }
-    }]
+    use: [{loader: 'babel-loader'}]
   },
   {type: 'javascript/auto', test: /\.json$/, use: [{loader: 'json-loader'}]},
   {test: /\.ejs$/, use: 'ejs-loader'},

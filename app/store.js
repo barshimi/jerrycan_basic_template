@@ -1,21 +1,22 @@
-
+import jerrycan from 'jerrycan'
 import ReduxThunk from 'redux-thunk'
 import { routerMiddleware, routerReducer as router } from 'react-router-redux'
+
 import { applyMiddleware, createStore, combineReducers } from 'redux'
 
 const thirdPartyReducers = {
   routing: router
   // Combine core third-party reducers here
 }
-
 /**
  * create store with middleware and reducers
  * @param  {class} reducerRegistry  [reducer registry class]
  * @param  {object} history         [html 5 history]
  */
-export default function configureStore (reduxElements, history) {
+export default async function configureStore (reduxElements, history) {
+  const appMiddleware = await jerrycan.appMiddleware(reduxElements.actions)
   const middleware = applyMiddleware(
-    ...reduxElements.appMiddleware,
+    ...appMiddleware,
     ReduxThunk,
     routerMiddleware(history)
     // add middlewares here
