@@ -12,7 +12,6 @@
       "env": {
         "NODE_ENV": "development",
         "MODULES": "[\"module_one\", \"module_two\", \"module_three\"]",
-        "CONFIG_TYPE": "rc",
         "DEFAULTE_ROUTE": "/"
       }
     }
